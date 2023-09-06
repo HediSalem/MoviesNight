@@ -1,0 +1,23 @@
+.backgroun-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(7px);
+}
+.backgroun-img {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.active {
+  position: relative;
+}
