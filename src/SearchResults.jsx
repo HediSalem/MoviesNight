@@ -30,13 +30,14 @@ function SearchResults() {
   const actors = actorsQueryResults?.results?.flatMap((result) =>
     result?.known_for.map((member) => <MoviePosters member={member} />)
   );
-
+  const searchCount =
+    movieQueryResults.total_results + actorsQueryResults.total_results;
   return (
     <>
       <Header />
       <div style={{ marginLeft: "5%" }}>
         <h1 style={{ fontFamily: "fantasy" }}>{query}</h1>
-        <h2>{movieQueryResults.total_results}</h2>
+        <h2>{searchCount}</h2>
         <div className="row">{movies}</div>
         <div className="row">{actors}</div>
       </div>
