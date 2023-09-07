@@ -14,7 +14,7 @@ function MoviePosters(props) {
         alt={member.name}
         style={{ width: 100, height: 150 }}
       />
-      <p>{member.title}</p>
+      <p>{member.title ? member.title : member.name}</p>
       <p style={{ color: "gray", fontSize: 12 }}>{member.vote_count}</p>
     </div>
   );
