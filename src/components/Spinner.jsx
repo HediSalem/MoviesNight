@@ -6,7 +6,7 @@ import CircularProgress, {
 function Spinner() {
   function FacebookCircularProgress() {
     return (
-      <Box sx={{ position: "relative" }}>
+      <Box sx={{ position: "relative", marginTop: "20%", marginLeft: "40%" }}>
         <CircularProgress
           variant="determinate"
           sx={{

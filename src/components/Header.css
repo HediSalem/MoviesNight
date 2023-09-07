@@ -40,3 +40,26 @@
 .searchinput input::placeholder {
   color: white;
 }
+
+.dropdown {
+  z-index: 50;
+  color: inherit;
+  top: 296%;
+  background-color: gray;
+  border-radius: 8px;
+  right: 47%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #f5f5f5;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./NewMovies.css";
+import { Button } from "@mui/material";
 function NewMovies({ movies }) {
   return (
     <div id="carouselExampleIndicators" className="carousel slide col-md-12">
@@ -27,6 +28,7 @@ function NewMovies({ movies }) {
                 background: `url('https://image.tmdb.org/t/p/w500${movie.poster_path}') center/cover `,
               }}
             ></div>
+
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
@@ -35,6 +37,22 @@ function NewMovies({ movies }) {
               className={`d-block w-100 newMovieImg`}
               style={{ objectFit: "contain" }}
             />
+            <div style={{ marginBottom: "5%" }}>
+              <Button
+                color="info"
+                variant="contained"
+                style={{ marginLeft: "2%" }}
+              >
+                Regarder
+              </Button>
+              <Button
+                color="inherit"
+                variant="outlined"
+                style={{ marginLeft: "1%" }}
+              >
+                En savoir plus
+              </Button>
+            </div>
           </div>
         ))}
       </div>

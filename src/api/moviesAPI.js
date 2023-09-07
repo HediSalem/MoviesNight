@@ -67,3 +67,12 @@ export const getVideosById = async (id) => {
     throw error;
   }
 };
+
+export const searchMovie = async (query) => {
+  try {
+    const response = await instance.get(`/3/search/movie?query=${query}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
