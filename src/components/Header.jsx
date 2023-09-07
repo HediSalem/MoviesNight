@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import { searchMovie } from "../api/moviesAPI";
+import { searchMovie, searchActor } from "../api/moviesAPI";
 import { Button } from "@mui/material";
 function Header() {
   const [suggestions, setSuggestions] = useState([]);
@@ -12,7 +12,7 @@ function Header() {
     const inputValue = event.target.value;
     setQuery(inputValue);
 
-    if (inputValue.length >= 3) {
+    if (inputValue.length >= 1) {
       fetchSuggestions(inputValue);
       setShowDropDown(true);
     } else {
@@ -23,14 +23,23 @@ function Header() {
 
   const fetchSuggestions = async (query) => {
     try {
-      const data = await searchMovie(query);
-      const movieTitles = data.results.slice(0, 3).map((movie) => movie.title);
-      setSuggestions(movieTitles);
+      const moviesData = await searchMovie(query);
+      const movieTitles = moviesData.results
+        .slice(0, 5)
+        .map((movie) => movie.title);
+      const actorsData = await searchActor(query);
+
+      const actors = actorsData?.results
+        .slice(0, 2)
+        .flatMap((result) => result.known_for?.map((item) => item?.name))
+        .filter((name) => name !== undefined);
+
+      const combinedArray = movieTitles.concat(actors);
+      setSuggestions(combinedArray);
     } catch (error) {
       console.error("Error fetching details:", error);
     }
   };
-
   const navigate = useNavigate();
   return (
     <div className="frame-2">

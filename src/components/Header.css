@@ -42,12 +42,13 @@
 }
 
 .dropdown {
-  z-index: 50;
+  z-index: 1;
   color: inherit;
-  top: 296%;
   background-color: gray;
   border-radius: 8px;
   right: 47%;
+  top: 643%;
+  margin-right: -44%;
 }
 
 ul {

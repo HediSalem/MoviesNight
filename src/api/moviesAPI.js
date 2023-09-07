@@ -76,3 +76,12 @@ export const searchMovie = async (query) => {
     throw error;
   }
 };
+
+export const searchActor = async (query) => {
+  try {
+    const response = await instance.get(`/3/search/person?query=${query}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

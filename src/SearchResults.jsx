@@ -1,30 +1,44 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import { useParams } from "react-router-dom";
-import { searchMovie } from "./api/moviesAPI";
+import { searchActor, searchMovie } from "./api/moviesAPI";
 import MoviePosters from "./components/MoviePosters";
 function SearchResults() {
   const { query } = useParams();
-  const [queryResults, setQueryResults] = useState([]);
+  const [movieQueryResults, setMovieQueryResults] = useState([]);
+  const [actorsQueryResults, setActorsQueryResults] = useState([]);
   useEffect(() => {
     searchMovie(query)
       .then((data) => {
-        setQueryResults(data);
+        setMovieQueryResults(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching details:", error);
+      });
+    searchActor(query)
+      .then((data) => {
+        setActorsQueryResults(data);
       })
       .catch((error) => {
         console.error("Error fetching details:", error);
       });
   }, [query]);
-  const movies = queryResults?.results?.map((member) => (
+  const movies = movieQueryResults?.results?.map((member) => (
     <MoviePosters member={member} />
   ));
+
+  const actors = actorsQueryResults?.results?.flatMap((result) =>
+    result?.known_for.map((member) => <MoviePosters member={member} />)
+  );
+
   return (
     <>
       <Header />
       <div style={{ marginLeft: "5%" }}>
         <h1 style={{ fontFamily: "fantasy" }}>{query}</h1>
-        <h2>{queryResults.total_results}</h2>
+        <h2>{movieQueryResults.total_results}</h2>
         <div className="row">{movies}</div>
+        <div className="row">{actors}</div>
       </div>
     </>
   );
